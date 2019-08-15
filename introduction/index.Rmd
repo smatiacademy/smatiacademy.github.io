@@ -1,0 +1,188 @@
+---
+title: "Introduction"
+author: "**Sagiru Mati**"
+date: '**`r format(Sys.time(), "%A, %B %d, %Y")`**'
+output: 
+  bookdown::html_document2:
+    toc: true
+    #theme: united
+    number_sections: true
+linkcolor: blue
+link-citations: yes
+urlcolor: green
+citecolor: green
+fig_caption: true
+bibliography: References.bib
+csl: CSL/apa.csl
+---
+
+```{r function,include=FALSE}
+docx= function() {
+knitr::opts_knit$get("rmarkdown.pandoc.to")=="docx"
+}
+latex= function() {
+knitr::opts_knit$get("rmarkdown.pandoc.to")=="latex"
+}
+html= function() {
+knitr::opts_knit$get("rmarkdown.pandoc.to")=="html"
+}
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<br><br>
+
+# What You Can Learn on This Blog.
+
+
+If you follow __this blog__, I will walk you through the following:
+
+1. How to learn Eviews programming easily
+
+1. How to make your reports dynamic and reproducible using __Eviews, R and R Markdown__. You will no longer have to copy tables and figures from your Eviews workspace and paste into your report; everything will be copied into your report dynamically and automatically. 
+
+1. How to integrate Eviews, R, and R Markdown. That is running Eviews program from another application.
+
+1. Tricks to produce __html, pdf and docx__ outputs from one source file of __R Markdown__. If you learn R Markdown, you are likely to burn all your Latex  ($\LaTeX$) distributions and other authoring (typesetting) applications.
+
+1. Learn how to automatically format tables, graphs and text in your html, pdf and docx documents. Imagine controlling and formatting (bold, italic,centering) all tables in your docx file by pressing some keys like `ctrl+T`
+
+1. Step by step guide to develop an R package that can integrate Eviews, R, and R Markdown.
+
+1. Learn how to work with version control system, specifically [github](https://www.github.com). Therefore, you __no longer__ have to be saving your files with various names (such as update1, update2, final version, final version2 and so on)
+
+1. In addtion to this, I will make sure that followers of this blog learn how to set up a blog and a webpage like this, where you have all your codes, tables, graphs and explanation in one place.
+
+1. A lot of other important skills.
+
+
+# What do Dynamic and Reproducible Reports mean?
+
+Have you ever submittted a manuscript to a journal or thesis to your supervisor, or financial report to your boss, or something similar to these? If the answer is yes, I believe you have got some sort of corrections or suggestions to make some changes. These changes may take as much time as writing the original report. Assume that your journal editor asks you to change your bibligraphy sttyle from APA to Chicago, or to some other weird style and at the same you are asked to change the decimal points of your table figures from 2 to 3. This will take a  lot of time if your report is __NOT__ dynamic. 
+
+Dynamic report means that every part of your report is linked to other parts, and vice versa. For this reason, changing the bibliographic style and the number of decimal points in a table or any part of the document will take you __less than a minute__! Another dimension of dynamic report is the ability to produce different output formats (**html, pdf, docx, epub, and so on**) from the same content. 
+
+The research community are not only inerested in the research results, but also the reproducibility of results. The world has changed from asking "**Please, how did you do it?**" to "**Please give me the code**". Reproducible report simply means that everyone can generate (reproduce) your report exactly, given that they have access to and can run your __code__ on their machine successfuly.
+
+I think it is a good idea to give an example using the map of West Africa. I believe it will be difficult, if not impossible, to reproduce the following map exactly if people do not have access to the __code__ that produces it. It will take a lot of effort, time and energy to produce something close to the map shown in Figure \@ref(fig:ECOWAS)
+.
+
+<br><br>
+
+```{r ECOWAS,fig.cap="Map of ECOWAS countries",fig.asp=0.45,out.height="80%",out.width="\\textwidth",fig.pos='h',fig.align="center"}
+library(maps)
+library(mapdata)
+col_vector<-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000')
+ECOWAS=map("worldHires",region=c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde:Sao Tiago","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),exact=T,fill=TRUE,col=col_vector,bty = "n",mar=c(0,0,0,0)) 
+legend("topleft",c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),ncol= 2,cex = 0.77,fill = col_vector,bty = "n")
+```
+
+
+<br><br>
+
+
+
+However it will take few seconds for everyone, depending on computer speed, to __reproduce__ the map (Figure \@ref(fig:ECOWAS)) if s/he uses the following sets of __code__.
+
+
+<br><br>
+
+```{r ECOWAS-EVAL,eval=FALSE,echo=TRUE,fig.cap="Map of ECOWAS countries",fig.asp=0.45,out.height="80%",out.width="\\textwidth",fig.pos='h',fig.align="center"}
+library(maps)
+library(mapdata)
+col_vector<-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000')
+ECOWAS=map("worldHires",region=c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde:Sao Tiago","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),exact=T,fill=TRUE,col=col_vector,bty = "n",mar=c(0,0,0,0)) 
+legend("topleft",c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),ncol= 2,cex = 0.77,fill = col_vector,bty = "n")
+```
+
+
+<br><br>
+
+What do you think if you get some corrections/suggestions to modify the color legend(s) of some or all of the countries on the map in Figure \@ref(fig:ECOWAS1)
+, for example:
+
+
+<br><br>
+
+```{r ECOWAS1,fig.cap="Map of ECOWAS countries",fig.asp=0.45,out.height="0.5\textwidth",out.width="\textwidth",fig.pos='t',fig.align="center"}
+library(maps)
+library(mapdata)
+col_vector<- colors()[c(seq(450,470, by=8),seq(40,60, by=10),seq(170,200,by=10),seq(610,650,by=8))]
+col_vector[1]="red"
+col_vector[2]="white"
+col_vector[7]="blue"
+col_vector[11]="yellow"
+ECOWAS=map("worldHires",region=c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde:Sao Tiago","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),exact=T,fill=TRUE,col=col_vector,bty = "n",mar=c(0,0,0,0)) 
+legend("topleft",c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),ncol= 2,cex = 0.77,fill = col_vector,bty = "n")
+```
+
+
+<br><br>
+
+
+That's so easy, all it takes is few seconds if you run the following codes in R.
+
+
+<br><br>
+
+```{r ECOWAS1-eval,eval=FALSE,echo=TRUE,fig.cap="Map of ECOWAS countries",fig.asp=0.45,out.height="0.5\textwidth",out.width="\textwidth",fig.pos='t',fig.align="center"}
+library(maps)
+library(mapdata)
+col_vector<- colors()[c(seq(450,470, by=8),seq(40,60, by=10),seq(170,200,by=10),seq(610,650,by=8))]
+col_vector[1]="red"
+col_vector[2]="white"
+col_vector[7]="blue"
+col_vector[11]="yellow"
+ECOWAS=map("worldHires",region=c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde:Sao Tiago","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),exact=T,fill=TRUE,col=col_vector,bty = "n",mar=c(0,0,0,0)) 
+legend("topleft",c("Niger","Nigeria","Ivory Coast","Burkina Faso","Benin","Sierra Leone","Senegal","Mali","Cape Verde","Togo","Ghana","Liberia","Gambia","Guinea","Guinea-Bissau"),ncol= 2,cex = 0.77,fill = col_vector,bty = "n")
+```
+
+
+<br><br>
+
+
+Figures \@ref(fig:ECOWAS) and \@ref(fig:ECOWAS1) show how creating map of West Africa is **Dynamic and Reproducible**.
+
+
+<br><br>
+
+# Why Should  Reports  be Dynamic and Reproducible?
+
+It is known fact that some journals require the authors of a manuscrtipt to send the codes of their data analysis as a condition for accepting their manuscript. The reason is to ensure **REPRODUCIBILITY** of the results. For this, it is obvious that you cannot get your article(s) published if your results are not __reproducible__.
+
+The main reason to make your reports __dynamic__ is that you save a lot of time and energy in modifying the style of your report. Changing referencing style is the common modification in the process of publishing an articles.
+
+Therefore it is good to make your report dynamic and reproducible.
+
+# Tools for Dynamic and Reproducible Reports
+
+To some extent, Latex ($\LaTeX$),  __Microsoft Office Word__, __LibreOffice__ and  __OpenOffice__ can make reports __dynamic and reproducible__. However, their capacity is limited as they make no provisions for `inline codes`.
+
+Other tools of dynamic and reproducible reports include SASDown by _Statistical Analysis Software_ ([SAS](https://www.sas.com)), _Stata Markdown_ introduced in [Stata](https://www.stata.com) 16. The limitations of these tools include inability to work (communicate) with other programming languages or statistical softwares. For example, Stata cannot work in tandem with SAS or C++ to make dynamic and reproducible reports, and the reverse is true.
+
+On the other hand, [R](https://www.r-project.org) and _R Markdown_ provided by the Integrated Development Environment [Rstudio](https://www.rstudio.com) offer the possibility of making reports dynamic and reproducible, and can __communicate__ with other statistical softwares or other programming languages. Thanks to [knitr](https://yihui.name/knitr/) package created by [Yihui Xie](https://www.yihui.name) [see  @yihui2019; @yihui2015; @yihui2014]
+
+# Why Eviews, R and R Markdown?
+
+
+I have chosen to work with [Eviews](https://www.eviews.com) on this __Blog__ as it is one of the popular statistical tools for timeseries and panel data analyses. Moreover, its learning curve is not steep (we will learn the basics of Eviews programming before integrating it in R Markdown). Additionally, I am yet to see any blog, book or serious academic article written purposely to integrate Eviews in R Markdown.
+
+R and R Markdown are necessary tools for dynamic and reproducible reports as they can set up to commmunicate with Eviews. Moreover, the first two tools are free and open-source and license of Eviews is relatively low, especially for students.
+
+
+
+<br><br>
+
+In order to read more about me, please  [visit my Blog](https://smatiacademy.blogspot.com), which I created purposely for those interested in learning Dynamic and Reproducible reports using __Eviews, R and R Markdown__.
+
+Please feel free to post questions, comments, suggestions and/or corrections on the __Blog__.
+
+
+<br><br><br> 
+
+
+# References {-}
+

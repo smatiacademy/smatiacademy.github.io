@@ -1,0 +1,42 @@
+---
+title: "Dynamic and Reproducible Reports Using Eviews, R and R Markdown"
+author: "**Sagiru Mati**"
+date: '**`r format(Sys.time(), "%A, %B %d, %Y")`**'
+output: 
+  html_document:
+    toc: true
+    number_sections: true
+linkcolor: blue
+link-citations: yes
+urlcolor: blue
+citecolor: green
+fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br><br>
+
+
+
+Welcome to the homepage for __Dynamic and Reproducible Reports Using Eviews, R and R Markdown__
+
+<br><br>
+
+In order to read more about me, please  [visit my Blog](https://smatiacademy.blogspot.com), which I created purposely for those interested in learning Dynamic and Reproducible reports using __Eviews, R and R Markdown__.
+
+Please feel free to post questions, comments, suggestions and/or corrections on the __Blog__.
+
+
+<br><br>
+
+
+__Sagiru Mati,__ 
+
+__Department of Economics,__
+
+__Northwest University (Yusuf Maitama Sule University) Kano,__
+
+__Nigeria.__
