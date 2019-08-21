@@ -1,0 +1,29 @@
+---
+output: github_document
+---
+
+Welcome to the homepage of __SMATI ACADEMY__ 
+
+Please feel free to explore the following pages:
+
+1. [My blog SMATI ACADEMY](https://smatiacademy.blogspot.com)
+
+1. [Introduction on dynamic and reproducible reports using Eviews, R and R Markdown](https://tutorial.smatiacademy.com/introduction)
+
+<br><br>
+
+In order to read more about me, please  [visit MY BLOG](https://smatiacademy.blogspot.com), which I created purposely for those interested in learning Dynamic and Reproducible reports using __Eviews, R and R Markdown__.
+
+Please feel free to post questions, comments, suggestions and/or corrections on the __Blog__.
+
+
+<br><br>
+
+
+__Sagiru Mati,__ 
+
+__Department of Economics,__
+
+__Northwest University (Yusuf Maitama Sule University) Kano,__
+
+__Nigeria.__

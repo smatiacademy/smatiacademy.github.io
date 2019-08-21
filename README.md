@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/smatiacademy/smatiacademy.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Welcome to the homepage of **SMATI ACADEMY**
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Please feel free to explore the following pages:
 
-### Markdown
+1.  [My blog SMATI ACADEMY](https://smatiacademy.blogspot.com)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+2.  [Introduction on dynamic and reproducible reports using Eviews, R
+    and R Markdown](https://tutorial.smatiacademy.com/introduction)
 
-```markdown
-Syntax highlighted code block
+<br><br>
 
-# Header 1
-## Header 2
-### Header 3
+In order to read more about me, please [visit MY
+BLOG](https://smatiacademy.blogspot.com), which I created purposely for
+those interested in learning Dynamic and Reproducible reports using
+**Eviews, R and R Markdown**.
 
-- Bulleted
-- List
+Please feel free to post questions, comments, suggestions and/or
+corrections on the **Blog**.
 
-1. Numbered
-2. List
+<br><br>
 
-**Bold** and _Italic_ and `Code` text
+**Sagiru Mati,**
 
-[Link](url) and ![Image](src)
-```
+**Department of Economics,**
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+**Northwest University (Yusuf Maitama Sule University) Kano,**
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/smatiacademy/smatiacademy.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**Nigeria.**
